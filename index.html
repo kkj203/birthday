@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday Shakshi!</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Pacifico&display=swap" rel="stylesheet">
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(to bottom, #ffe7f0, #fff);
+    }
+    .scene {
+      display: none;
+      position: absolute;
+      width: 100%;
+      height: 100vh;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      flex-direction: column;
+      cursor: pointer;
+      overflow: hidden;
+    }
+    .active {
+      display: flex;
+      animation: fadeIn 1s ease-in-out forwards;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    .cake {
+      width: 320px;
+      animation: float 3s ease-in-out infinite;
+    }
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0); }
+    }
+    .photo {
+      width: 300px;
+      border-radius: 20px;
+      border: 5px solid #fff;
+      box-shadow: 0 0 20px rgba(0,0,0,0.2);
+      animation: fadeIn 2s ease-in-out;
+      margin-bottom: 20px;
+    }
+    .photo-small {
+      width: 150px;
+      margin-bottom: 15px;
+    }
+    .button {
+      padding: 15px 30px;
+      font-size: 1.2em;
+      border: none;
+      border-radius: 30px;
+      background: linear-gradient(135deg, #ff4081, #f8c3dc);
+      color: #fff;
+      cursor: pointer;
+      animation: glow 2s infinite alternate;
+    }
+    @keyframes glow {
+      from { box-shadow: 0 0 5px #ff4081; }
+      to { box-shadow: 0 0 20px #f8c3dc; }
+    }
+    .final-card {
+      background: linear-gradient(145deg, #ffffff, #ffe0f0);
+      padding: 40px;
+      border-radius: 30px;
+      box-shadow: 0 15px 30px rgba(255, 105, 180, 0.4);
+      text-align: center;
+      max-width: 450px;
+      animation: fadeIn 2s ease-in-out;
+    }
+    .final-card h1 {
+      font-family: 'Pacifico', cursive;
+      font-size: 3em;
+      color: #ff4081;
+      margin-bottom: 20px;
+    }
+    .final-card p {
+      font-size: 1.3em;
+      margin: 10px 0;
+    }
+    canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+  <!-- Scene 1 -->
+  <div id="scene1" class="scene active" onclick="goToScene(2)">
+    <img src="https://i.pinimg.com/originals/cf/85/19/cf85196b1c4eb6313bb85124318fdffe.jpg" alt="Birthday Cake" class="cake" />
+    <h2 style="font-family: 'Pacifico', cursive; font-size: 2em; color: #ff4081; margin-top: 20px;">Click the Cake!</h2>
+  </div>
+
+  <!-- Scene 2 -->
+  <div id="scene2" class="scene" onclick="goToScene(3)">
+    <img src="kkj.png" alt="Shakshi Jain" class="photo" />
+    <h2 style="font-family: 'Pacifico', cursive; font-size: 2em; color: #ff4081;">Celebrate with Shakshi Jain!</h2>
+    <button class="button">Click Me!</button>
+  </div>
+
+  <!-- Scene 3 -->
+  <div id="scene3" class="scene">
+    <img src="kkj.png" alt="Shakshi Jain" class="photo photo-small" />
+    <div class="final-card">
+      <h1>You're Invited!</h1>
+      <p>🎂 <strong>Name:</strong> Shakshi Jain</p>
+      <p>📍 <strong>Venue:</strong> Chawla Family Restaurant</p>
+      <p>📅 <strong>Date:</strong> April 29, 2025</p>
+      <p>🕗 <strong>Time:</strong> 8:00 PM</p>
+    </div>
+  </div>
+
+  <!-- Confetti Script -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <script>
+    function goToScene(sceneNum) {
+      document.querySelectorAll('.scene').forEach(el => el.classList.remove('active'));
+      const next = document.getElementById('scene' + sceneNum);
+      next.classList.add('active');
+      launchEffects();
+    }
+
+    function launchEffects() {
+      for (let i = 0; i < 3; i++) {
+        confetti({
+          particleCount: 100,
+          spread: 70,
+          origin: { y: Math.random() - 0.2 },
+        });
+      }
+    }
+
+    window.onload = () => {
+      setInterval(() => {
+        confetti({
+          particleCount: 2,
+          angle: 60,
+          spread: 55,
+          origin: { x: 0 },
+        });
+        confetti({
+          particleCount: 2,
+          angle: 120,
+          spread: 55,
+          origin: { x: 1 },
+        });
+      }, 500);
+    };
+  </script>
+</body>
+</html>
